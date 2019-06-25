@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 export default function TopicHeaderArea(props) {
   return (
     <div>
-      <ul style={{ float: "left" }}>
+      <ul>
         {props.topics.map(topic => (
-          <li key={topic.slug}>{topic.slug}</li>
+          <Link to={`/topics/${topic.slug}`} key={topic.slug}>
+            <li>{topic.slug}</li>
+          </Link>
         ))}
       </ul>
     </div>
