@@ -2,7 +2,7 @@ import React from "react";
 import LinksArea from "./LinksArea";
 import TopicHeaderArea from "./TopicHeaderArea";
 import LoggedInArea from "./LoggedInArea";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const HeaderWrapper = styled.header`
   display: flex;
