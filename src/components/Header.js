@@ -1,5 +1,5 @@
 import React from "react";
-import LinksArea from "./LinksArea";
+import LinksArea from "./ViewAllArticlesLink";
 import TopicHeaderArea from "./TopicHeaderArea";
 import LoggedInArea from "./LoggedInArea";
 import styled from "styled-components";
