@@ -5,7 +5,7 @@ export default function TopicHeaderArea(props) {
     <div>
       <ul style={{ float: "left" }}>
         {props.topics.map(topic => (
-          <li>{topic}</li>
+          <li key={topic.slug}>{topic.slug}</li>
         ))}
       </ul>
     </div>
