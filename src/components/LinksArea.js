@@ -3,10 +3,7 @@ import React from "react";
 export default function LinksArea() {
   return (
     <div>
-      <ul>
-        <li>Home</li>
-        <li>Articles</li>
-      </ul>
+      <h4>View All Articles</h4>
     </div>
   );
 }
