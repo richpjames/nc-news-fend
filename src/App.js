@@ -11,7 +11,8 @@ class App extends Component {
     topics: [],
     articles: [],
     hasError: false,
-    loading: true
+    loading: true,
+    topic: ""
   };
 
   render() {
@@ -21,7 +22,7 @@ class App extends Component {
         <Header topics={topics} />
         <Router>
           <ArticlesGrid path="/" />
-          <TopicPage path="/topics/:topicSlug" articles={articles} />
+          <ArticlesGrid path="/topics/:topicSlug" />
         </Router>
       </div>
     );
@@ -30,9 +31,15 @@ class App extends Component {
     getTopics().then(topics => this.setState({ topics: topics }));
     this.fetchArticles();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.topic !== this.props.topic) {
+      this.fetchArticles();
+    }
+  }
+
   fetchArticles = () => {
     const { topic } = this.props;
-
     getArticleSummaries(topic)
       .then(articles =>
         this.setState({ articles, loading: false, hasError: false })
