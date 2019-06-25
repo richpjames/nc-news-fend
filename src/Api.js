@@ -10,11 +10,16 @@ export const getTopics = topic => {
   });
 };
 
-export const getArticleSummaries = () => {
-  return request.get(`articles`).then(({ data }) => {
+export const getArticleSummaries = (topic, author) => {
+  return request.get('/articles', {
+    params: {
+      topic: topic,
+      author: author
+    }
+  }).then(({ data }) => {
     return data.articles;
-  });
-};
+  })
+}
 
 // {
 //   params: {
