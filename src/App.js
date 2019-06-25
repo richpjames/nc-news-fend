@@ -9,7 +9,9 @@ import { Router } from "@reach/router";
 class App extends Component {
   state = {
     topics: [],
-    articles: []
+    articles: [],
+    hasError: false,
+    loading: true
   };
 
   render() {
