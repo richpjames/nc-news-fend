@@ -58,9 +58,7 @@ export default function Header(props) {
         </LoggedInLinksWrapper>
       </HeaderTopRow>
       <HeaderBottomRow>
-        <listWrapper>
-          <TopicHeaderArea topics={props.topics} />
-        </listWrapper>
+        <TopicHeaderArea topics={props.topics} />
       </HeaderBottomRow>
     </HeaderWrapper>
   );
