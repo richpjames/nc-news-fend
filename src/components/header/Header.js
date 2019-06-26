@@ -56,7 +56,7 @@ export default function Header(props) {
       <HeaderTopRow>
         <h1>NC News</h1>
         <IconWrapper>
-          <i class="far fa-newspaper" />
+          <i className="far fa-newspaper" />
         </IconWrapper>
         <LoggedInLinksWrapper>
           <LoggedInArea />
