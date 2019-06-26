@@ -46,12 +46,18 @@ const LoggedInLinksWrapper = styled.div`
   display: inline-block;
 `;
 
+const IconWrapper = styled.span`
+  font-size: 70px;
+`;
+
 export default function Header(props) {
   return (
     <HeaderWrapper>
       <HeaderTopRow>
         <h1>NC News</h1>
-        <img src="https://www.richjames.co.uk/NWT/logo.png" alt="site logo" />
+        <IconWrapper>
+          <i class="far fa-newspaper" />
+        </IconWrapper>
         <LoggedInLinksWrapper>
           <LoggedInArea />
           <LinksArea />
