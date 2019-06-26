@@ -31,10 +31,17 @@ export const getArticleById = id => {
 };
 
 export const getComments = article_id => {
-  return request.get(`articles/${article_id}/comments`).then(({data}) => {
+  return request.get(`articles/${article_id}/comments`).then(({ data }) => {
     return data.comments;
-  })
-}
+  });
+};
+
+export const postComment = (comment, article_id) => {
+  console.log(comment, article_id);
+  return request.post(`articles/${article_id}/comments`, comment).then(res => {
+    return res;
+  });
+};
 
 // {
 //   params: {
