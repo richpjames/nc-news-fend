@@ -51,7 +51,7 @@ export default function Header(props) {
     <HeaderWrapper>
       <HeaderTopRow>
         <h1>NC News</h1>
-        {/* <img src="https://www.richjames.co.uk/NWT/logo.png" alt="site logo" /> */}
+        <img src="https://www.richjames.co.uk/NWT/logo.png" alt="site logo" />
         <LoggedInLinksWrapper>
           <LoggedInArea />
           <LinksArea />
