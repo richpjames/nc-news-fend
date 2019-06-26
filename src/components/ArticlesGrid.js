@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
+import Header from "./Header";
 import { getArticleSummaries } from "../Api.js";
 import { Link } from "@reach/router";
 import styled from "styled-components";
@@ -21,31 +22,54 @@ const ArticlesWrapper = styled.section`
 
 export default class ArticlesGrid extends Component {
   state = {
-    articles: []
+    topics: [],
+    articles: [],
+    hasError: false,
+    loading: true,
+    topic: ""
   };
 
   render() {
+    const { articles } = this.state;
     return (
-      <ArticlesWrapper>
-        {this.state.articles.map((article, i) => (
-          <Link to={`/article/${i}`} key={article.title}>
-            <ArticleCard
-              author={article.author}
-              title={article.title}
-              topic={article.topic}
-              votes={article.votes}
-              commentCount={article.comment_count}
-              createdAt={article.created_at}
-              index={i}
-            />
-          </Link>
-        ))}
-      </ArticlesWrapper>
+      <>
+        <ArticlesWrapper>
+          {this.state.articles.map(article => (
+            <Link to={`/article/${article.article_id}`} key={article.title}>
+              <ArticleCard
+                author={article.author}
+                title={article.title}
+                topic={article.topic}
+                votes={article.votes}
+                commentCount={article.comment_count}
+                createdAt={article.created_at}
+              />
+            </Link>
+          ))}
+        </ArticlesWrapper>
+      </>
     );
   }
   componentDidMount() {
     getArticleSummaries().then(articles =>
       this.setState({ articles: articles })
     );
+
+    this.fetchArticles();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.topic !== this.props.topic) {
+      this.fetchArticles();
+    }
+  }
+
+  fetchArticles = () => {
+    const { topic } = this.props;
+    getArticleSummaries(topic)
+      .then(articles =>
+        this.setState({ articles, loading: false, hasError: false })
+      )
+      .catch(error => this.setState({ hasError: error, loading: false }));
+  };
 }
