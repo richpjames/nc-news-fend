@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import ArticlesGrid from "./components/ArticlesGrid";
 import SingleArticle from "./components/SingleArticle";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import { Router } from "@reach/router";
 import { getTopics } from "./Api.js";
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
-import Header from "./Header";
 import { getArticleSummaries } from "../Api.js";
 import { Link } from "@reach/router";
 import styled from "styled-components";
