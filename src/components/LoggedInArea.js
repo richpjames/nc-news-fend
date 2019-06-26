@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const loggedInWrapper = styled.div`
+const LoggedInWrapper = styled.div`
   height: 2px;
   display: inline-block;
 `;
 
 export default function LoggedInArea() {
   return (
-    <loggedInWrapper>
+    <LoggedInWrapper>
       <p>You are logged in as: a user</p>
-    </loggedInWrapper>
+    </LoggedInWrapper>
   );
 }
