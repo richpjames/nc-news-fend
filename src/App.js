@@ -5,11 +5,7 @@ import ArticlesGrid from "./components/ArticlesGrid";
 import Header from "./components/Header";
 import TopicPage from "./components/TopicPage";
 import { Router } from "@reach/router";
-import styled from "styled-components";
-
-const AppWrapper = styled.div`
-  background: black;
-`;
+import styled, { css } from "styled-components";
 
 class App extends Component {
   state = {
@@ -21,16 +17,13 @@ class App extends Component {
   };
   render() {
     const { topics, articles } = this.state;
-
     return (
-      <div className="AppWrapper">
-        <div className="App">
-          <Header topics={topics} />
-          <Router>
-            <ArticlesGrid path="/" />
-            <ArticlesGrid path="/topics/:topicSlug" />
-          </Router>
-        </div>
+      <div className="App">
+        <Header topics={topics} />
+        <Router>
+          <ArticlesGrid path="/" />
+          <ArticlesGrid path="/topics/:topicSlug" />
+        </Router>
       </div>
     );
   }

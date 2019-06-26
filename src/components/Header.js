@@ -5,17 +5,63 @@ import LoggedInArea from "./LoggedInArea";
 import styled from "styled-components";
 
 const HeaderWrapper = styled.header`
+  display: grid;
+  grid-template-rows: 1fr, 1fr;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+`;
+const HeaderTopRow = styled.span`
   display: flex;
   justify-content: space-around;
+  background: #0052d4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #6fb1fc,
+    #4364f7,
+    #0052d4
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #6fb1fc,
+    #4364f7,
+    #0052d4
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+`;
+const HeaderBottomRow = styled.span`
+  background: #0052d4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #6fb1fc,
+    #4364f7,
+    #0052d4
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #6fb1fc,
+    #4364f7,
+    #0052d4
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+`;
+const LoggedInLinksWrapper = styled.div`
+  display: inline-block;
 `;
 
 export default function Header(props) {
   return (
     <HeaderWrapper>
-      <TopicHeaderArea topics={props.topics} />
-      <h1>NC News</h1>
-      <LoggedInArea />
-      <LinksArea />
+      <HeaderTopRow>
+        <h1>NC News</h1>
+        {/* <img src="https://www.richjames.co.uk/NWT/logo.png" alt="site logo" /> */}
+        <LoggedInLinksWrapper>
+          <LoggedInArea />
+          <LinksArea />
+        </LoggedInLinksWrapper>
+      </HeaderTopRow>
+      <HeaderBottomRow>
+        <listWrapper>
+          <TopicHeaderArea topics={props.topics} />
+        </listWrapper>
+      </HeaderBottomRow>
     </HeaderWrapper>
   );
 }
