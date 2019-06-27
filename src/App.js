@@ -8,7 +8,12 @@ import { getTopics } from "./Api.js";
 
 class App extends Component {
   state = {
-    topics: []
+    topics: [],
+    loggedInUser: {
+      username: "jessjelly",
+      avatar: "https://i.ytimg.com/vi/RUP4dCucVnY/hqdefault.jpg",
+      name: "Jess Jelly"
+    }
   };
   render() {
     const { topics } = this.state;
@@ -18,7 +23,10 @@ class App extends Component {
         <Router>
           <ArticlesGrid path="/" />
           <ArticlesGrid path="/topics/:topic" />
-          <SingleArticle path="/article/:article_id" />
+          <SingleArticle
+            loggedInUser={this.state.loggedInUser}
+            path="/article/:article_id"
+          />
         </Router>
       </div>
     );

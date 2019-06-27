@@ -50,7 +50,6 @@ export default class SingleArticle extends Component {
 
     const formattedDate = distanceInWords(created_at, new Date());
 
-    const { comments } = this.state;
     const { article_id } = this.props;
     return (
       <SingleArticleWrapper>
@@ -66,7 +65,11 @@ export default class SingleArticle extends Component {
             <li>Topic: {topic}</li>
           </MetaInfoWrapper>
         </BodyWrapper>
-        <Comments articleId={article_id} votes={votes} />
+        <Comments
+          articleId={article_id}
+          votes={votes}
+          loggedInUser={this.props.loggedInUser}
+        />
       </SingleArticleWrapper>
     );
   }

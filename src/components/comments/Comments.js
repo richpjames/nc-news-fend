@@ -46,10 +46,11 @@ export default class Comments extends Component {
   };
   handleSubmit = event => {
     const { articleId } = this.props;
+    const { username } = this.props.loggedInUser;
     event.preventDefault();
     let comment = {
       article_id: articleId,
-      username: "tickle122",
+      username: username,
       body: this.state.commentBody
     };
     postComment(comment, articleId);
