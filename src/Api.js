@@ -37,24 +37,18 @@ export const getComments = article_id => {
 };
 
 export const postComment = (comment, articleId) => {
-  return request.post(`articles/${articleId}/comments`, comment).then(res => {
-    return res;
-  });
+  return request
+    .post(`articles/${comment.article_id}/comments`, comment)
+    .then(res => {
+      return res;
+    });
 };
 export const patchArticleVotes = (article_id, increment) => {
   return request
     .patch(`/articles/${article_id}`, { inc_votes: increment })
-    .then(({ data }) => {
-      return data.article;
+    .then(votes => {
+      return votes;
     });
+
+  
 };
-// {
-//   params: {
-//     topic: topic,
-//       author: author,
-//     //sort by etc
-//     }
-// })
-//     .then(({ data }) => {
-//   return data.articles;
-// })

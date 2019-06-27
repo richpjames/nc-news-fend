@@ -14,9 +14,9 @@ export default class Comments extends Component {
     comments: [],
     commentBody: ""
   };
-
   render() {
     const { comments } = this.state;
+    const { votes, articleId } = this.props;
     return (
       <div>
         <CommentPostBox>
@@ -32,7 +32,7 @@ export default class Comments extends Component {
             <input type="submit" value="Submit" />
           </form>
         </CommentPostBox>
-        <Voter />
+        <Voter votes={votes} article_id={articleId} />
         <CommentDisplay comments={comments} />
       </div>
     );
@@ -48,8 +48,8 @@ export default class Comments extends Component {
     const { articleId } = this.props;
     event.preventDefault();
     let comment = {
-      author: "tickle122",
       article_id: articleId,
+      username: "tickle122",
       body: this.state.commentBody
     };
     postComment(comment, articleId);
