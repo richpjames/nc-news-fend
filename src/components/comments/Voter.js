@@ -23,7 +23,6 @@ export default class Voter extends Component {
   }
   handleVote = increment => {
     const { article_id } = this.props;
-    console.log(article_id);
     patchArticleVotes(article_id, increment).catch(err => {
       this.setState(({ voteChange }) => ({
         voteChange: voteChange - increment
