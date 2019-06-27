@@ -12,8 +12,6 @@ const CommentDisplay = props => {
       <h2>Comments:</h2>
       {props.comments.map(comment => (
         <div key={comment.body}>
-          {console.log(comment)}
-          {}
           <p>{comment.body}</p>
           <h4>{comment.author}</h4>
           <p>{comment.votes}</p>
