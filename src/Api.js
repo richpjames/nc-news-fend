@@ -36,12 +36,18 @@ export const getComments = article_id => {
   });
 };
 
-export const postComment = (comment, article_id) => {
-  return request.post(`articles/${article_id}/comments`, comment).then(res => {
+export const postComment = (comment, articleId) => {
+  return request.post(`articles/${articleId}/comments`, comment).then(res => {
     return res;
   });
 };
-
+export const patchArticleVotes = (article_id, increment) => {
+  return request
+    .patch(`/articles/${article_id}`, { inc_votes: increment })
+    .then(({ data }) => {
+      return data.article;
+    });
+};
 // {
 //   params: {
 //     topic: topic,
