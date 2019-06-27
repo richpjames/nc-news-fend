@@ -10,13 +10,12 @@ export const getTopics = topic => {
   });
 };
 
-export const getArticleSummaries = (topic, author) => {
+export const getArticleSummaries = (topic, sortBy) => {
   return request
     .get("/articles", {
       params: {
         topic: topic,
-        author: author
-        // sort_by: sortBy
+        sort_by: sortBy
       }
     })
     .then(({ data }) => {
@@ -49,6 +48,4 @@ export const patchArticleVotes = (article_id, increment) => {
     .then(votes => {
       return votes;
     });
-
-  
 };

@@ -18,6 +18,7 @@ const ArticlesWrapper = styled.section`
   border: 2px solid #6fb1fc;
   border-radius: 25px;
 `;
+const Sorting = styled.div``;
 
 export default class ArticlesGrid extends Component {
   state = {
@@ -25,28 +26,36 @@ export default class ArticlesGrid extends Component {
     articles: [],
     hasError: false,
     loading: true,
-    topic: ""
+    topic: "",
+    sortBy: ""
   };
 
   render() {
-    const { articles } = this.state;
     return (
-      <>
-        <ArticlesWrapper>
-          {this.state.articles.map(article => (
-            <Link to={`/article/${article.article_id}`} key={article.title}>
-              <ArticleCard
-                author={article.author}
-                title={article.title}
-                topic={article.topic}
-                votes={article.votes}
-                commentCount={article.comment_count}
-                createdAt={article.created_at}
-              />
-            </Link>
-          ))}
-        </ArticlesWrapper>
-      </>
+      <ArticlesWrapper>
+        <Sorting>
+          <p>Sort By:</p>
+          <form onChange={this.dropDownSubmit}>
+            <select name="sort-by">
+              <option value="date_created">Date Created</option>
+              <option value="comment_count">Comment Count</option>
+              <option value="votes">Votes</option>
+            </select>
+          </form>
+        </Sorting>
+        {this.state.articles.map(article => (
+          <Link to={`/article/${article.article_id}`} key={article.title}>
+            <ArticleCard
+              author={article.author}
+              title={article.title}
+              topic={article.topic}
+              votes={article.votes}
+              commentCount={article.comment_count}
+              createdAt={article.created_at}
+            />
+          </Link>
+        ))}
+      </ArticlesWrapper>
     );
   }
   componentDidMount() {
@@ -58,14 +67,23 @@ export default class ArticlesGrid extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.topic !== this.props.topic) {
-      this.fetchArticles();
+    const { topic } = this.state;
+    const { sortBy } = this.state;
+    const topicChange = prevState.topic !== topic;
+    const sortByChange = prevState.sortBy !== sortBy;
+    // const orderBy = prevState.orderBy !== //orderby
+
+    if (topicChange || sortByChange) {
+      this.fetchArticles(topic, sortBy);
     }
   }
 
-  fetchArticles = () => {
-    const { topic } = this.props;
-    getArticleSummaries(topic)
+  dropDownSubmit = event => {
+    this.setState({ sortBy: event.target.value });
+  };
+
+  fetchArticles = (topic, sortBy) => {
+    getArticleSummaries(topic, sortBy)
       .then(articles =>
         this.setState({ articles, loading: false, hasError: false })
       )
