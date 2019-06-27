@@ -2,8 +2,8 @@
 import React, { Component } from "react";
 import { getArticleById, getComments } from "../Api";
 import styled from "styled-components";
-import timestampMaker from "../timestampMaker";
 import Comments from "./comments/Comments";
+import { distanceInWords } from "date-fns";
 
 const SingleArticleWrapper = styled.section`
   padding-left: 10vw;
@@ -47,9 +47,11 @@ export default class SingleArticle extends Component {
       topic,
       votes
     } = this.state.article;
+
+    const formattedDate = distanceInWords(created_at, new Date());
+
     const { comments } = this.state;
     const { article_id } = this.props;
-    const dateObj = new Date(created_at);
     return (
       <SingleArticleWrapper>
         <h1>{title}</h1>
@@ -59,11 +61,12 @@ export default class SingleArticle extends Component {
           {body}
           <MetaInfoWrapper>
             <li>Comments: {comment_count}</li>
-            <li>{timestampMaker(dateObj)}</li>
+            <li>{`Written: ${formattedDate} ago`}</li>
             <li>Votes: {votes}</li>
+            <li>Topic: {topic}</li>
           </MetaInfoWrapper>
         </BodyWrapper>
-        <Comments articleId={article_id} />
+        <Comments articleId={article_id} votes={votes} />
       </SingleArticleWrapper>
     );
   }

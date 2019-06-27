@@ -1,11 +1,11 @@
 import React from "react";
-import timestampMaker from "../timestampMaker";
+import { distanceInWords } from "date-fns";
 import styled from "styled-components";
 
 export default function ArticleCard(props) {
   const { title, author, topic, votes, commentCount, createdAt } = props;
 
-  const dateObject = new Date(createdAt);
+  const formattedDate = distanceInWords(createdAt, new Date());
 
   const ArticleCardWrapper = styled.div`
     border: 2px solid #eccbd9;
@@ -37,7 +37,7 @@ export default function ArticleCard(props) {
       <h3>Topic: {topic}</h3>
       <h4>Votes: {votes}</h4>
       <h4>Comment Count: {commentCount}</h4>
-      <p>Created: {timestampMaker(dateObject)}</p>
+      <p>Created: {`${formattedDate} ago`}</p>
     </ArticleCardWrapper>
   );
 }
