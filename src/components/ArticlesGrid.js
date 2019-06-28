@@ -26,8 +26,7 @@ export default class ArticlesGrid extends Component {
     articles: [],
     hasError: false,
     loading: true,
-    topic: "",
-    sortBy: ""
+    sortBy: "created_at"
   };
 
   render() {
@@ -37,7 +36,7 @@ export default class ArticlesGrid extends Component {
           <p>Sort By:</p>
           <form onChange={this.dropDownSubmit}>
             <select name="sort-by">
-              <option value="date_created">Date Created</option>
+              <option value="created_at">Date Created</option>
               <option value="comment_count">Comment Count</option>
               <option value="votes">Votes</option>
             </select>
@@ -59,20 +58,19 @@ export default class ArticlesGrid extends Component {
     );
   }
   componentDidMount() {
-    getArticleSummaries().then(articles =>
-      this.setState({ articles: articles })
-    );
-
-    this.fetchArticles();
+    const { topic } = this.props;
+    this.fetchArticles(topic);
+    getArticleSummaries(topic).then(articles => {
+      this.setState({ articles: articles });
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { topic } = this.state;
+    const { topic } = this.props;
     const { sortBy } = this.state;
-    const topicChange = prevState.topic !== topic;
+    const topicChange = prevProps.topic !== topic;
     const sortByChange = prevState.sortBy !== sortBy;
     // const orderBy = prevState.orderBy !== //orderby
-
     if (topicChange || sortByChange) {
       this.fetchArticles(topic, sortBy);
     }
