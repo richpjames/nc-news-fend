@@ -4,23 +4,23 @@ const request = axios.create({
   baseURL: `https://rich-james-nc-news.herokuapp.com/api/`
 });
 
-export const getTopics = topic => {
+export const getTopics = () => {
   return request.get(`topics`).then(({ data }) => {
     return data.topics;
   });
 };
 
-export const getArticleSummaries = (topic, sortBy) => {
+export const getArticleSummaries = (topic, sort_by) => {
   return request
     .get("/articles", {
       params: {
-        topic: topic,
-        sort_by: sortBy
+        topic,
+        sort_by
       }
     })
     .then(({ data }) => {
       return data.articles;
-    });
+    })
 };
 
 export const getArticleById = id => {
@@ -48,4 +48,8 @@ export const patchArticleVotes = (article_id, increment) => {
     .then(votes => {
       return votes;
     });
+};
+
+export const deleteComment = comment_id => {
+  return request.delete(`comments/${comment_id}`)
 };
