@@ -3,6 +3,7 @@ import "./App.css";
 import ArticlesGrid from "./components/ArticlesGrid";
 import SingleArticle from "./components/SingleArticle";
 import Header from "./components/header/Header";
+import ErrorPage from "./components/ErrorPage";
 import { Router } from "@reach/router";
 import { getTopics } from "./Api.js";
 
@@ -27,6 +28,7 @@ class App extends Component {
             loggedInUser={this.state.loggedInUser}
             path="/article/:article_id"
           />
+          <ErrorPage default />
         </Router>
       </div>
     );
