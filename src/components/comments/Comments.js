@@ -17,6 +17,7 @@ export default class Comments extends Component {
   render() {
     const { comments } = this.state;
     const { votes, articleId } = this.props;
+    const { username } = this.props.loggedInUser;
     return (
       <div>
         <CommentPostBox>
@@ -33,7 +34,7 @@ export default class Comments extends Component {
           </form>
         </CommentPostBox>
         <Voter votes={votes} article_id={articleId} />
-        <CommentDisplay comments={comments} />
+        <CommentDisplay comments={comments} loggedInUser={username} />
       </div>
     );
   }
@@ -53,7 +54,17 @@ export default class Comments extends Component {
       username: username,
       body: this.state.commentBody
     };
-    postComment(comment, articleId);
+    postComment(comment, articleId)
+      .then(commentRes => {
+        const { comment } = commentRes.data;
+        this.setState(prevState => {
+          return {
+            comments: [comment, ...prevState.comments],
+            commentBody: ""
+          };
+        });
+      })
+      .catch(err => console.log(err));
   };
   fetchComments = article_id => {
     getComments(article_id).then(comments =>
