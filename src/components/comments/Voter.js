@@ -14,7 +14,7 @@ export default class Voter extends Component {
         <button onClick={() => this.handleVote(1)} disabled={voteChange > 0}>
           <i className="fas fa-thumbs-up" />
         </button>
-        <p>Votes: {votes + voteChange}</p>
+        Votes: {votes + voteChange}
         <button onClick={() => this.handleVote(-1)} disabled={voteChange < 0}>
           <i className="fas fa-thumbs-down" />
         </button>
