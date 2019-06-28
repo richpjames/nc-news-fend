@@ -3,6 +3,7 @@ import LinksArea from "./ViewAllArticlesLink";
 import TopicHeaderArea from "./TopicHeaderArea";
 import LoggedInArea from "./LoggedInArea";
 import styled from "styled-components";
+import { Link } from "@reach/router";
 
 const HeaderWrapper = styled.header`
   display: grid;
@@ -53,16 +54,18 @@ const IconWrapper = styled.span`
 export default function Header(props) {
   return (
     <HeaderWrapper>
-      <HeaderTopRow>
-        <h1>NC News</h1>
-        <IconWrapper>
-          <i className="far fa-newspaper" />
-        </IconWrapper>
-        <LoggedInLinksWrapper>
-          <LoggedInArea />
-          <LinksArea />
-        </LoggedInLinksWrapper>
-      </HeaderTopRow>
+      <Link to="/">
+        <HeaderTopRow>
+          <h1>NC News</h1>
+          <IconWrapper>
+            <i className="far fa-newspaper" />
+          </IconWrapper>
+          <LoggedInLinksWrapper>
+            <LoggedInArea />
+            <LinksArea />
+          </LoggedInLinksWrapper>
+        </HeaderTopRow>
+      </Link>
       <HeaderBottomRow>
         <TopicHeaderArea topics={props.topics} />
       </HeaderBottomRow>
