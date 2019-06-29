@@ -3,6 +3,7 @@ import ArticleCard from "./ArticleCard";
 import { getArticleSummaries } from "../Api.js";
 import { Link } from "@reach/router";
 import styled from "styled-components";
+import Loader from "./Loader";
 
 const ArticlesWrapper = styled.section`
   padding-left: 10vw;
@@ -10,6 +11,7 @@ const ArticlesWrapper = styled.section`
   padding-top: 2vh;
   background: #e1eff6;
   width: 50vw;
+  min-height: 50vw;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15vh;
@@ -32,28 +34,36 @@ export default class ArticlesGrid extends Component {
   render() {
     return (
       <ArticlesWrapper>
-        <Sorting>
-          <p>Sort By:</p>
-          <form onChange={this.dropDownSubmit}>
-            <select name="sort-by">
-              <option value="created_at">Date Created</option>
-              <option value="comment_count">Comment Count</option>
-              <option value="votes">Votes</option>
-            </select>
-          </form>
-        </Sorting>
-        {this.state.articles.map(article => (
-          <Link to={`/article/${article.article_id}`} key={article.title}>
-            <ArticleCard
-              author={article.author}
-              title={article.title}
-              topic={article.topic}
-              votes={article.votes}
-              commentCount={article.comment_count}
-              createdAt={article.created_at}
-            />
-          </Link>
-        ))}
+        {this.state.loading ? (
+          <Loader />
+        ) : (
+          <>
+            <Sorting>
+              <p>Sort By:</p>
+              <form onChange={this.dropDownSubmit}>
+                <select name="sort-by">
+                  <option value="created_at">Date Created</option>
+                  <option value="comment_count">Comment Count</option>
+                  <option value="votes">Votes</option>
+                </select>
+              </form>
+            </Sorting>
+            {this.state.articles.map(article => {
+              return (
+                <Link to={`/article/${article.article_id}`} key={article.title}>
+                  <ArticleCard
+                    author={article.author}
+                    title={article.title}
+                    topic={article.topic}
+                    votes={article.votes}
+                    commentCount={article.comment_count}
+                    createdAt={article.created_at}
+                  />
+                </Link>
+              );
+            })}
+          </>
+        )}
       </ArticlesWrapper>
     );
   }

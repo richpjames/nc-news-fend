@@ -4,6 +4,7 @@ import { getArticleById, getComments } from "../Api";
 import styled from "styled-components";
 import Comments from "./comments/Comments";
 import { distanceInWords } from "date-fns";
+import Loader from "./Loader";
 
 const SingleArticleWrapper = styled.section`
   padding-left: 10vw;
@@ -53,23 +54,29 @@ export default class SingleArticle extends Component {
     const { article_id } = this.props;
     return (
       <SingleArticleWrapper>
-        <h1>{title}</h1>
-        <h2>By {author}</h2>
-        <br />
-        <BodyWrapper>
-          {body}
-          <MetaInfoWrapper>
-            <li>Comments: {comment_count}</li>
-            <li>{`Written: ${formattedDate} ago`}</li>
-            <li>Votes: {votes}</li>
-            <li>Topic: {topic}</li>
-          </MetaInfoWrapper>
-        </BodyWrapper>
-        <Comments
-          articleId={article_id}
-          votes={votes}
-          loggedInUser={this.props.loggedInUser}
-        />
+        {this.state.loading ? (
+          <Loader />
+        ) : (
+          <>
+            <h1>{title}</h1>
+            <h2>By {author}</h2>
+            <br />
+            <BodyWrapper>
+              {body}
+              <MetaInfoWrapper>
+                <li>Comments: {comment_count}</li>
+                <li>{`Written: ${formattedDate} ago`}</li>
+                <li>Votes: {votes}</li>
+                <li>Topic: {topic}</li>
+              </MetaInfoWrapper>
+            </BodyWrapper>
+            <Comments
+              articleId={article_id}
+              votes={votes}
+              loggedInUser={this.props.loggedInUser}
+            />
+          </>
+        )}
       </SingleArticleWrapper>
     );
   }
@@ -82,7 +89,7 @@ export default class SingleArticle extends Component {
     getArticleById(article_id)
       .then(article =>
         this.setState({ article, loading: false, hasError: false })
-      )
-      .catch(error => this.setState({ hasError: error, loading: false }));
+      ).catch(err => {console.log(err)})
+      // .catch(error => this.setState({ hasError: error, loading: false }));
   };
 }
