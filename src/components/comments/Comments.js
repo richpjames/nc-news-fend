@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { getComments, postComment, deleteComment } from "../../Api";
 import Voter from "./Voter";
+import CommentPost from "./CommentPost";
 import styled from "styled-components";
-import { distanceInWords } from "date-fns";
+import CommentCard from "./CommentCard";
 
 const CommentPostBox = styled.section`
   width: 40vw;
@@ -17,7 +18,9 @@ export default class Comments extends Component {
   state = {
     comments: [],
     commentBody: "",
-    loading: true
+    loading: true,
+    hasError: false,
+    errorMsg: ""
   };
   render() {
     const { comments } = this.state;
@@ -47,26 +50,12 @@ export default class Comments extends Component {
           <h2>Comments:</h2>
 
           {this.state.comments.map(comment => (
-            <div key={comment.body}>
-              {console.log(comment.author, username)}{" "}
-              {comment.author === username && (
-                <button onClick={() => this.handleDelete(comment.comment_id)}>
-                  Delete
-                </button>
-              )}
-              <p>{comment.body}</p>
-              <h4>{comment.author}</h4>
-              <p>Votes: {comment.votes}</p>
-              <p>{`${distanceInWords(comment.created_at, new Date())} ago`}</p>
-              <p>
-                {
-                  <Voter
-                    votes={comment.votes}
-                    article_id={comment.article_id}
-                  />
-                }
-              </p>
-            </div>
+            <CommentCard
+              handleDelete={this.handleDelete}
+              username={username}
+              comment={comment}
+              key={comment.comment_id}
+            />
           ))}
         </CommentListWrapper>
       </div>
@@ -117,6 +106,6 @@ export default class Comments extends Component {
           };
         });
       })
-      .catch(err => console.dir(err));
+      .catch(err => {console.log(err)});
   };
 }
