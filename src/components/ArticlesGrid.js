@@ -4,6 +4,7 @@ import { getArticleSummaries } from "../Api.js";
 import { Link } from "@reach/router";
 import styled from "styled-components";
 import Loader from "./Loader";
+import Sorting from "./Sorting";
 
 const ArticlesWrapper = styled.section`
   padding-left: 10vw;
@@ -20,7 +21,6 @@ const ArticlesWrapper = styled.section`
   border: 2px solid #6fb1fc;
   border-radius: 25px;
 `;
-const Sorting = styled.div``;
 
 export default class ArticlesGrid extends Component {
   state = {
@@ -38,16 +38,7 @@ export default class ArticlesGrid extends Component {
           <Loader />
         ) : (
           <>
-            <Sorting>
-              <p>Sort By:</p>
-              <form onChange={this.dropDownSubmit}>
-                <select name="sort-by">
-                  <option value="created_at">Date Created</option>
-                  <option value="comment_count">Comment Count</option>
-                  <option value="votes">Votes</option>
-                </select>
-              </form>
-            </Sorting>
+            <Sorting dropDownSubmit={this.dropDownSubmit} />
             {this.state.articles.map(article => {
               return (
                 <Link to={`/article/${article.article_id}`} key={article.title}>
@@ -95,6 +86,12 @@ export default class ArticlesGrid extends Component {
       .then(articles =>
         this.setState({ articles, loading: false, hasError: false })
       )
-      .catch(error => this.setState({ hasError: error, loading: false }));
+      .catch(error =>
+        this.setState({
+          errMsg: error.response.data.msg,
+          hasError: error,
+          loading: false
+        })
+      );
   };
 }
