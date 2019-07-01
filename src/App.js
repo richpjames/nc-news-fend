@@ -4,7 +4,6 @@ import ArticlesGrid from "./components/ArticlesGrid";
 import SingleArticle from "./components/SingleArticle";
 import Header from "./components/header/Header";
 import ErrorPage from "./components/ErrorPage";
-import Loader from "./components/Loader";
 import { Router } from "@reach/router";
 import { getTopics } from "./Api.js";
 
