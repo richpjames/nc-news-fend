@@ -9,7 +9,7 @@ const SortingWrap = styled.section`
   margin-right: auto;
   padding-bottom: 1em;
   padding-top: 1em;
-  background: #6fb1fc;
+  background: #b0d4fd;
   -webkit-box-shadow: 3px 3px 0px 1px #f2dde6;
   -moz-box-shadow: 3px 3px 0px 1px #f2dde6;
   box-shadow: 3px 3px 0px 1px #f2dde6;
