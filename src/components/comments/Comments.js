@@ -14,13 +14,6 @@ const CommentPostBox = styled.section`
   background: #aefff0;
 `;
 
-const VoterWrapper = styled.section`
-  width: 10vw;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-`;
-
 const CommentListWrapper = styled.section`
   padding-left: 5vw;
   padding-right: 5vw;
@@ -40,10 +33,7 @@ export default class Comments extends Component {
     return (
       <CommentSectionWrapper>
         <CommentPostBox>
-          <VoterWrapper>
-            <Voter votes={votes} article_id={articleId} />
-          </VoterWrapper>
-
+          <Voter votes={votes} article_id={articleId} />
           <form onSubmit={this.handleSubmit}>
             <label>
               Comment:{` `}
@@ -63,7 +53,6 @@ export default class Comments extends Component {
 
         <CommentListWrapper>
           <h2>Comments:</h2>
-
           {this.state.comments.map(comment => (
             <CommentCard
               handleDelete={this.handleDelete}

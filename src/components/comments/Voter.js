@@ -6,6 +6,12 @@ const Thumb = styled.button`
   height: 25px;
   position: relative;
 `;
+const VoterWrapper = styled.section`
+  width: 10vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+`;
 
 export default class Voter extends Component {
   state = {
@@ -15,7 +21,7 @@ export default class Voter extends Component {
     const { voteChange } = this.state;
     const { votes } = this.props;
     return (
-      <section>
+      <VoterWrapper>
         <Thumb onClick={() => this.handleVote(1)} disabled={voteChange > 0}>
           <i className="fas fa-thumbs-up" />
         </Thumb>
@@ -25,7 +31,7 @@ export default class Voter extends Component {
         <Thumb onClick={() => this.handleVote(-1)} disabled={voteChange < 0}>
           <i className="fas fa-thumbs-down" />
         </Thumb>
-      </section>
+      </VoterWrapper>
     );
   }
   handleVote = increment => {
