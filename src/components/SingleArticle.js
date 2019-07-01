@@ -89,7 +89,14 @@ export default class SingleArticle extends Component {
     getArticleById(article_id)
       .then(article =>
         this.setState({ article, loading: false, hasError: false })
-      ).catch(err => {console.log(err)})
-      // .catch(error => this.setState({ hasError: error, loading: false }));
+      )
+      .catch(error => {
+        this.setState({
+          hasErr: true,
+          loading: false,
+          errMsg: error.response.data.msg
+        });
+      });
+    // .catch(error => this.setState({ hasError: error, loading: false }));
   };
 }
