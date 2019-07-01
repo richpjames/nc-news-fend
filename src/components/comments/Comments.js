@@ -4,14 +4,27 @@ import Voter from "./Voter";
 import styled from "styled-components";
 import CommentCard from "./CommentCard";
 
+const CommentSectionWrapper = styled.section``;
+
 const CommentPostBox = styled.section`
   width: 40vw;
-  height: 500;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 30px;
+  background: #aefff0;
 `;
 
-const VoterWrapper = styled.section``;
+const VoterWrapper = styled.section`
+  width: 10vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+`;
 
-const CommentListWrapper = styled.section``;
+const CommentListWrapper = styled.section`
+  padding-left: 5vw;
+  padding-right: 5vw;
+`;
 
 export default class Comments extends Component {
   state = {
@@ -25,25 +38,28 @@ export default class Comments extends Component {
     const { votes, articleId } = this.props;
     const { username } = this.props.loggedInUser;
     return (
-      <div>
+      <CommentSectionWrapper>
         <CommentPostBox>
+          <VoterWrapper>
+            <Voter votes={votes} article_id={articleId} />
+          </VoterWrapper>
+
           <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              name="userComment"
-              placeholder="Write your comment here"
-              value={this.state.commentBody}
-              onChange={this.handleChange}
-              required
-            />
+            <label>
+              Comment:{` `}
+              <input
+                type="text"
+                name="userComment"
+                placeholder="Write your comment here"
+                value={this.state.commentBody}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
             <br />
             <input type="submit" value="Submit" />
           </form>
         </CommentPostBox>
-
-        <VoterWrapper>
-          <Voter votes={votes} article_id={articleId} />
-        </VoterWrapper>
 
         <CommentListWrapper>
           <h2>Comments:</h2>
@@ -57,7 +73,7 @@ export default class Comments extends Component {
             />
           ))}
         </CommentListWrapper>
-      </div>
+      </CommentSectionWrapper>
     );
   }
   componentDidMount() {
@@ -89,9 +105,11 @@ export default class Comments extends Component {
       .catch(err => console.log(err));
   };
   fetchComments = article_id => {
-    getComments(article_id).then(comments =>
-      this.setState({ comments: comments, loading: false }).catch(console.log)
-    );
+    getComments(article_id)
+      .then(comments => {
+        this.setState({ comments: comments, loading: false });
+      })
+      .catch(console.log);
   };
   handleDelete = comment_id => {
     const { comments } = this.state;
