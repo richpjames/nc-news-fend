@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { patchArticleVotes } from "../../Api";
+import { patchArticleVotes, patchCommentVotes } from "../../Api";
 
 export default class Voter extends Component {
   state = {
@@ -23,11 +23,22 @@ export default class Voter extends Component {
   }
   handleVote = increment => {
     const { article_id } = this.props;
-    patchArticleVotes(article_id, increment).catch(err => {
-      this.setState(({ voteChange }) => ({
-        voteChange: voteChange - increment
-      }));
-    });
+    const { comment_id } = this.props;
+    if (article_id) {
+      patchArticleVotes(article_id, increment).catch(err => {
+        this.setState(({ voteChange }) => ({
+          voteChange: voteChange - increment
+        }));
+      });
+    }
+    if (comment_id) {
+      console.log("voting on an comment");
+      patchCommentVotes(comment_id, increment).catch(err => {
+        this.setState(({ voteChange }) => ({
+          voteChange: voteChange - increment
+        }));
+      });
+    }
     this.setState(({ voteChange }) => ({
       voteChange: voteChange + increment
     }));

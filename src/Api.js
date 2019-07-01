@@ -20,7 +20,7 @@ export const getArticleSummaries = (topic, sort_by) => {
     })
     .then(({ data }) => {
       return data.articles;
-    })
+    });
 };
 
 export const getArticleById = id => {
@@ -42,14 +42,23 @@ export const postComment = (comment, articleId) => {
       return res;
     });
 };
+
 export const patchArticleVotes = (article_id, increment) => {
   return request
     .patch(`/articles/${article_id}`, { inc_votes: increment })
     .then(votes => {
-      return votes;
+      return votes.data.votes;
+    });
+};
+
+export const patchCommentVotes = (comment_id, increment) => {
+  return request
+    .patch(`/${comment_id}`, { inc_votes: increment })
+    .then(votes => {
+      return votes.data.votes;
     });
 };
 
 export const deleteComment = comment_id => {
-  return request.delete(`comments/${comment_id}`)
+  return request.delete(`comments/${comment_id}`);
 };
