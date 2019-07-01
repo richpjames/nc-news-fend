@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { getComments, postComment, deleteComment } from "../../Api";
 import Voter from "./Voter";
-import CommentPost from "./CommentPost";
 import styled from "styled-components";
 import CommentCard from "./CommentCard";
 
@@ -23,7 +22,6 @@ export default class Comments extends Component {
     errorMsg: ""
   };
   render() {
-    const { comments } = this.state;
     const { votes, articleId } = this.props;
     const { username } = this.props.loggedInUser;
     return (
