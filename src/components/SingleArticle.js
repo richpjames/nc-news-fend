@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { getArticleById, getComments } from "../Api";
+import { getArticleById } from "../Api";
 import styled from "styled-components";
 import Comments from "./comments/Comments";
 import { distanceInWords } from "date-fns";
 import Loader from "./Loader";
+import ErrorPage from "./ErrorPage";
 
 const SingleArticleWrapper = styled.section`
   padding-left: 10vw;
@@ -34,6 +35,7 @@ export default class SingleArticle extends Component {
     article: {},
     comments: [],
     hasError: false,
+    errMsg: "",
     loading: true
   };
 
@@ -49,8 +51,11 @@ export default class SingleArticle extends Component {
     } = this.state.article;
 
     const formattedDate = distanceInWords(created_at, new Date());
-
+    const { errMsg } = this.state;
     const { article_id } = this.props;
+    const { hasError } = this.state;
+    if (hasError) return <ErrorPage errMsg={errMsg} />;
+
     return (
       <SingleArticleWrapper>
         {this.state.loading ? (
@@ -81,17 +86,17 @@ export default class SingleArticle extends Component {
   }
   componentDidMount() {
     const { article_id } = this.props;
-    this.fetchArticles(article_id);
+    this.fetchArticle(article_id);
   }
 
-  fetchArticles = article_id => {
+  fetchArticle = article_id => {
     getArticleById(article_id)
       .then(article =>
         this.setState({ article, loading: false, hasError: false })
       )
       .catch(error => {
         this.setState({
-          hasErr: true,
+          hasError: true,
           loading: false,
           errMsg: error.response.data.msg
         });

@@ -1,10 +1,11 @@
 import React from "react";
 
-export default function ErrorPage() {
+export default function ErrorPage(props) {
+  const { errMsg } = props;
   return (
     <div>
       <h1>Error</h1>
-      <h2>Page not found</h2>
+      <p>{errMsg}</p>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { Link } from "@reach/router";
 import styled from "styled-components";
 import Loader from "./Loader";
 import Sorting from "./Sorting";
+import ErrorPage from "./ErrorPage";
 
 const ArticlesWrapper = styled.section`
   padding-left: 10vw;
@@ -27,11 +28,15 @@ export default class ArticlesGrid extends Component {
     topics: [],
     articles: [],
     hasError: false,
+    errMsg: "",
     loading: true,
     sortBy: "created_at"
   };
 
   render() {
+    const { hasError } = this.state;
+    const { errMsg } = this.state;
+    if (hasError) return <ErrorPage errMsg={errMsg} />;
     return (
       <ArticlesWrapper>
         {this.state.loading ? (
