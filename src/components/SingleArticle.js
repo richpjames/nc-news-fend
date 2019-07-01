@@ -1,4 +1,3 @@
-//get request on mount
 import React, { Component } from "react";
 import { getArticleById, getComments } from "../Api";
 import styled from "styled-components";
@@ -97,6 +96,5 @@ export default class SingleArticle extends Component {
           errMsg: error.response.data.msg
         });
       });
-    // .catch(error => this.setState({ hasError: error, loading: false }));
   };
 }
