@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import ArticlesGrid from "./components/ArticlesGrid";
-import SingleArticle from "./components/SingleArticle";
+import ArticlesGrid from "./components/article-grid/ArticlesGrid";
+import SingleArticle from "./components/article-view/SingleArticle";
 import Header from "./components/header/Header";
 import ErrorPage from "./components/ErrorPage";
 import { Router } from "@reach/router";
@@ -16,6 +16,7 @@ class App extends Component {
       name: "Jess Jelly"
     }
   };
+
   render() {
     const { topics } = this.state;
     return (
