@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { getArticleById } from "../Api";
+import { getArticleById } from "../../Api";
 import styled from "styled-components";
-import Comments from "./comments/Comments";
-import { distanceInWords } from "date-fns";
-import Loader from "./Loader";
-import ErrorPage from "./ErrorPage";
+import Comments from "../comments/Comments";
+import Loader from "../Loader";
+import ErrorPage from "../ErrorPage";
+import MetaInfoForArticle from "./MetaInfoForArticle";
+import ArticleTitleArea from "./ArticleTitleArea";
+import ArticleBody from "./ArticleBody";
 
 const SingleArticleWrapper = styled.section`
-  padding-left: 10vw;
-  padding-right: 10vw;
   padding-top: 2vh;
   background: #e1eff6;
   width: 50vw;
@@ -19,15 +19,6 @@ const SingleArticleWrapper = styled.section`
   font-family: "Roboto", sans-serif;
   border: 2px solid #6fb1fc;
   border-radius: 25px;
-`;
-
-const BodyWrapper = styled.div`
-  text-align: left;
-`;
-const MetaInfoWrapper = styled.ul`
-  display: flex;
-  justify-items: space-between;
-  width: 100%;
 `;
 
 export default class SingleArticle extends Component {
@@ -50,11 +41,12 @@ export default class SingleArticle extends Component {
       votes
     } = this.state.article;
 
-    const formattedDate = distanceInWords(created_at, new Date());
     const { errMsg } = this.state;
     const { article_id } = this.props;
     const { hasError } = this.state;
+    const { loading } = this.state;
     if (hasError) return <ErrorPage errMsg={errMsg} />;
+    if (loading) return <Loader />;
 
     return (
       <SingleArticleWrapper>
@@ -62,18 +54,13 @@ export default class SingleArticle extends Component {
           <Loader />
         ) : (
           <>
-            <h1>{title}</h1>
-            <h2>By {author}</h2>
-            <br />
-            <BodyWrapper>
-              {body}
-              <MetaInfoWrapper>
-                <li>Comments: {comment_count}</li>
-                <li>{`Written: ${formattedDate} ago`}</li>
-                <li>Votes: {votes}</li>
-                <li>Topic: {topic}</li>
-              </MetaInfoWrapper>
-            </BodyWrapper>
+            <ArticleTitleArea title={title} author={author} />
+            <ArticleBody body={body} />
+            <MetaInfoForArticle
+              commentCount={comment_count}
+              createdAt={created_at}
+              topic={topic}
+            />
             <Comments
               articleId={article_id}
               votes={votes}
@@ -91,9 +78,9 @@ export default class SingleArticle extends Component {
 
   fetchArticle = article_id => {
     getArticleById(article_id)
-      .then(article =>
-        this.setState({ article, loading: false, hasError: false })
-      )
+      .then(article => {
+        this.setState({ article, loading: false, hasError: false });
+      })
       .catch(error => {
         this.setState({
           hasError: true,

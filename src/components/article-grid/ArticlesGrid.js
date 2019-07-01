@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
-import { getArticleSummaries } from "../Api.js";
+import { getArticleSummaries } from "../../Api.js";
 import { Link } from "@reach/router";
 import styled from "styled-components";
-import Loader from "./Loader";
+import Loader from "../Loader";
 import Sorting from "./Sorting";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "../ErrorPage";
 
 const ArticlesWrapper = styled.section`
   padding-left: 10vw;
