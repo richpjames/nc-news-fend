@@ -18,6 +18,10 @@ export default function ArticleCard(props) {
     -webkit-box-shadow: 3px 3px 0px 1px #f2dde6;
     -moz-box-shadow: 3px 3px 0px 1px #f2dde6;
     box-shadow: 3px 3px 0px 1px #f2dde6;
+
+    :active {
+      background-color: #80ffe8;
+    }
   `;
 
   const TitleWrapper = styled.h1`
@@ -25,7 +29,9 @@ export default function ArticleCard(props) {
     margin-left: auto;
     margin-right: auto;
     background: #e1eff6;
-    border-radius: 25px;
+    font-size: 1.5em;
+    font-family: "Josefin Sans", sans-serif;
+    padding: 0.2em;
   `;
 
   const MetaInfoWrapper = styled.ul`
@@ -48,21 +54,30 @@ export default function ArticleCard(props) {
       <TitleWrapper>{title}</TitleWrapper>
       <MetaInfoWrapper>
         <li>
-          <h3>by: {author}</h3>
+          <h3>
+            <strong>by: </strong>
+            {author}
+          </h3>
         </li>
         <li>
-          <h4>Topic: {topic}</h4>
+          <MetaDataP>
+            <strong>Topic:</strong> {topic}
+          </MetaDataP>
         </li>
         <li>
-          <MetaDataP>Votes: {votes}</MetaDataP>
+          <MetaDataP>
+            <strong>Votes:</strong> {votes}
+          </MetaDataP>
         </li>
-        <br></br>
         <li>
-          <MetaDataP>Comments: {commentCount}</MetaDataP>
+          <MetaDataP>
+            <strong>Comments:</strong> {commentCount}
+          </MetaDataP>
         </li>
-        <br></br>
         <li>
-          <MetaDataP>Created:</MetaDataP>
+          <MetaDataP>
+            <strong>Created:</strong>
+          </MetaDataP>
         </li>
         <li>
           <MetaDataP> {`${formattedDate} ago`}</MetaDataP>

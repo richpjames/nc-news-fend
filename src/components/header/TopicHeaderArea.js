@@ -7,7 +7,16 @@ export default function TopicHeaderArea(props) {
     border: 1px solid #6fb1fc;
     padding: 0.5em;
     width: 100%;
+
+    :hover {
+      border: 1px solid #fff;
+    }
+    :active {
+      background: #cae2fd;
+      color: #cae2fd;
+    }
   `;
+
   return (
     <nav>
       <ul>
