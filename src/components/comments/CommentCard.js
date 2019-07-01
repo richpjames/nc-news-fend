@@ -12,7 +12,9 @@ export default function CommentCard({ comment, handleDelete, username }) {
       <h4>{comment.author}</h4>
       <p>Votes: {comment.votes}</p>
       <p>{`${distanceInWords(comment.created_at, new Date())} ago`}</p>
-      <div>{<Voter votes={comment.votes} article_id={comment.article_id} />}</div>
+      <div>
+        {<Voter votes={comment.votes} comment_id={comment.comment_id} />}
+      </div>
     </div>
   );
 }
