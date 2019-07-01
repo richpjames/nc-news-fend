@@ -36,6 +36,7 @@ export default class Comments extends Component {
               placeholder="Write your comment here"
               value={this.state.commentBody}
               onChange={this.handleChange}
+              required
             />
             <br />
             <input type="submit" value="Submit" />
@@ -91,7 +92,7 @@ export default class Comments extends Component {
   };
   fetchComments = article_id => {
     getComments(article_id).then(comments =>
-      this.setState({ comments: comments, loading: false })
+      this.setState({ comments: comments, loading: false }).catch(console.log)
     );
   };
   handleDelete = comment_id => {
@@ -106,6 +107,8 @@ export default class Comments extends Component {
           };
         });
       })
-      .catch(err => {console.log(err)});
+      .catch(err => {
+        console.log(err);
+      });
   };
 }
