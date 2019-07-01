@@ -32,7 +32,6 @@ export default class Voter extends Component {
       });
     }
     if (comment_id) {
-      console.log("voting on an comment");
       patchCommentVotes(comment_id, increment).catch(err => {
         this.setState(({ voteChange }) => ({
           voteChange: voteChange - increment
