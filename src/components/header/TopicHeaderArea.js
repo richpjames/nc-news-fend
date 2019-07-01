@@ -6,18 +6,24 @@ export default function TopicHeaderArea(props) {
   const TopicLinkWrapper = styled.span`
     border: 1px solid #6fb1fc;
     padding: 0.5em;
+    width: 100%;
   `;
   return (
-    <div>
+    <nav>
       <ul>
-        {props.topics.map((topic, i) => (
+        {props.topics.map(topic => (
           <TopicLinkWrapper key={topic.slug}>
             <Link to={`/topics/${topic.slug}`}>
               <li>{topic.slug}</li>
             </Link>
           </TopicLinkWrapper>
         ))}
+        <TopicLinkWrapper>
+          <Link to="/">
+            <li>view all articles</li>
+          </Link>
+        </TopicLinkWrapper>
       </ul>
-    </div>
+    </nav>
   );
 }

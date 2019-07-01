@@ -1,5 +1,4 @@
 import React from "react";
-import LinksArea from "./ViewAllArticlesLink";
 import TopicHeaderArea from "./TopicHeaderArea";
 import LoggedInArea from "./LoggedInArea";
 import styled from "styled-components";
@@ -62,7 +61,6 @@ export default function Header(props) {
           </IconWrapper>
           <LoggedInLinksWrapper>
             <LoggedInArea />
-            <LinksArea />
           </LoggedInLinksWrapper>
         </HeaderTopRow>
       </Link>
