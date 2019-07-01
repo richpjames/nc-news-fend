@@ -7,7 +7,7 @@ export default function ArticleCard(props) {
 
   const formattedDate = distanceInWords(createdAt, new Date());
 
-  const ArticleCardWrapper = styled.div`
+  const ArticleCardWrapper = styled.section`
     border: 2px solid #eccbd9;
     border-radius: 25px;
     background: #afb3f7;
@@ -20,7 +20,7 @@ export default function ArticleCard(props) {
     box-shadow: 3px 3px 0px 1px #f2dde6;
   `;
 
-  const TitleWrapper = styled.div`
+  const TitleWrapper = styled.h1`
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -28,16 +28,46 @@ export default function ArticleCard(props) {
     border-radius: 25px;
   `;
 
+  const MetaInfoWrapper = styled.ul`
+    background: #d0fff6;
+    width: 50%;
+    margin: 1em auto;
+    padding: 1em 0;
+    list-style: none;
+    flex-direction: column;
+    min-width: 100px;
+  `;
+
+  const MetaDataP = styled.p`
+    line-height: 0px;
+    min-width: 100px;
+  `;
+
   return (
     <ArticleCardWrapper>
-      <TitleWrapper>
-        <h1>{title}</h1>
-      </TitleWrapper>
-      <h2>by: {author}</h2>
-      <h3>Topic: {topic}</h3>
-      <h4>Votes: {votes}</h4>
-      <h4>Comment Count: {commentCount}</h4>
-      <p>Created: {`${formattedDate} ago`}</p>
+      <TitleWrapper>{title}</TitleWrapper>
+      <MetaInfoWrapper>
+        <li>
+          <h3>by: {author}</h3>
+        </li>
+        <li>
+          <h4>Topic: {topic}</h4>
+        </li>
+        <li>
+          <MetaDataP>Votes: {votes}</MetaDataP>
+        </li>
+        <br></br>
+        <li>
+          <MetaDataP>Comments: {commentCount}</MetaDataP>
+        </li>
+        <br></br>
+        <li>
+          <MetaDataP>Created:</MetaDataP>
+        </li>
+        <li>
+          <MetaDataP> {`${formattedDate} ago`}</MetaDataP>
+        </li>
+      </MetaInfoWrapper>
     </ArticleCardWrapper>
   );
 }
