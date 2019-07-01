@@ -53,7 +53,7 @@ export const patchArticleVotes = (article_id, increment) => {
 
 export const patchCommentVotes = (comment_id, increment) => {
   return request
-    .patch(`/${comment_id}`, { inc_votes: increment })
+    .patch(`/comments/${comment_id}`, { inc_votes: increment })
     .then(votes => {
       return votes.data.votes;
     });
