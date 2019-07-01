@@ -10,7 +10,6 @@ export default function CommentCard({ comment, handleDelete, username }) {
       )}
       <p>{comment.body}</p>
       <h4>{comment.author}</h4>
-      <p>Votes: {comment.votes}</p>
       <p>{`${distanceInWords(comment.created_at, new Date())} ago`}</p>
       <div>
         {<Voter votes={comment.votes} comment_id={comment.comment_id} />}
