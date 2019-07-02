@@ -3,21 +3,20 @@ import { getComments, postComment, deleteComment } from "../../Api";
 import Voter from "./Voter";
 import styled from "styled-components";
 import CommentCard from "./CommentCard";
+import CommentTitle from "./CommentTitle";
 
 const CommentSectionWrapper = styled.section``;
 
 const CommentPostBox = styled.section`
-  width: 40vw;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 2vh;
   min-height: 30px;
   background: #aefff0;
+  border-bottom: solid 1px #bcb6ff;
 `;
 
-const CommentListWrapper = styled.section`
-  padding-left: 5vw;
-  padding-right: 5vw;
-`;
+const CommentListWrapper = styled.section``;
 
 export default class Comments extends Component {
   state = {
@@ -52,7 +51,7 @@ export default class Comments extends Component {
         </CommentPostBox>
 
         <CommentListWrapper>
-          <h2>Comments:</h2>
+          <CommentTitle />
           {this.state.comments.map(comment => (
             <CommentCard
               handleDelete={this.handleDelete}

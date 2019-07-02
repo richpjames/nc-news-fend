@@ -10,6 +10,8 @@ const VoterWrapper = styled.section`
   width: 10vw;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
   display: block;
 `;
 
@@ -34,6 +36,7 @@ export default class Voter extends Component {
       </VoterWrapper>
     );
   }
+
   handleVote = increment => {
     const { article_id } = this.props;
     const { comment_id } = this.props;
