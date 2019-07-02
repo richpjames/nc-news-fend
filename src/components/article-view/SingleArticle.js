@@ -4,14 +4,14 @@ import styled from "styled-components";
 import Comments from "../comments/Comments";
 import Loader from "../Loader";
 import ErrorPage from "../ErrorPage";
-import MetaInfoForArticle from "./MetaInfoForArticle";
+import MetaInfoForArticle from "./MetaInfoForSingleArticle";
 import ArticleTitleArea from "./ArticleTitleArea";
 import ArticleBody from "./ArticleBody";
 
 const SingleArticleWrapper = styled.section`
   padding-top: 2vh;
   background: #e1eff6;
-  width: 50vw;
+  width: 80vw;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15vh;
