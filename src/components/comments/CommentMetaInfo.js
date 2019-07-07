@@ -8,8 +8,8 @@ const MetaInfoWrapper = styled.div`
 `;
 
 export default function CommentMetaInfo(props) {
-  const author = props.author;
-  const createdAt = props.createdAt;
+  const {author} = props.author;
+  const {createdAt} = props.createdAt;
   const dateCreated = `${distanceInWords(createdAt, new Date())} ago`;
 
   return (

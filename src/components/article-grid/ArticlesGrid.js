@@ -40,8 +40,7 @@ export default class ArticlesGrid extends Component {
   };
 
   render() {
-    const { hasError } = this.state;
-    const { errMsg } = this.state;
+    const { hasError, errMsg, articles } = this.state;
     if (hasError) return <ErrorPage errMsg={errMsg} />;
     return (
       <ArticlesWrapper>
@@ -50,16 +49,25 @@ export default class ArticlesGrid extends Component {
         ) : (
           <>
             <Sorting dropDownSubmit={this.dropDownSubmit} />
-            {this.state.articles.map(article => {
+            {articles.map(article => {
+              const {
+                article_id,
+                author,
+                title,
+                topic,
+                votes,
+                comment_count,
+                created_at
+              } = article;
               return (
-                <Link to={`/article/${article.article_id}`} key={article.title}>
+                <Link to={`/article/${article_id}`} key={title}>
                   <ArticleCard
-                    author={article.author}
-                    title={article.title}
-                    topic={article.topic}
-                    votes={article.votes}
-                    commentCount={article.comment_count}
-                    createdAt={article.created_at}
+                    author={author}
+                    title={title}
+                    topic={topic}
+                    votes={votes}
+                    commentCount={comment_count}
+                    createdAt={created_at}
                   />
                 </Link>
               );

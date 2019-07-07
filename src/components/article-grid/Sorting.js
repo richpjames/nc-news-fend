@@ -20,11 +20,12 @@ const SortingWrap = styled.section`
 `;
 
 export default function Sorting(props) {
+  const { dropDownSubmit } = props;
   return (
     <SortingWrap>
       <h4>Sort By:</h4>
       <br />
-      <form onChange={props.dropDownSubmit}>
+      <form onChange={dropDownSubmit}>
         <select name="sort-by">
           <option value="created_at">Date Created</option>
           <option value="comment_count">Comment Count</option>
