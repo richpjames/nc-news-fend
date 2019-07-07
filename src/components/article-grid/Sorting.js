@@ -13,6 +13,10 @@ const SortingWrap = styled.section`
   -webkit-box-shadow: 3px 3px 0px 1px #f2dde6;
   -moz-box-shadow: 3px 3px 0px 1px #f2dde6;
   box-shadow: 3px 3px 0px 1px #f2dde6;
+  @media (max-width: 768px) {
+    width: 85%;
+    box-shadow: 0px 0px 0px 0px #fff;
+  }
 `;
 
 export default function Sorting(props) {

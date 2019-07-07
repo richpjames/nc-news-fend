@@ -21,6 +21,11 @@ const ArticlesWrapper = styled.section`
   font-family: "Roboto", sans-serif;
   border: 2px solid #6fb1fc;
   border-radius: 25px;
+  @media (max-width: 768px) {
+    width: 75%;
+    padding-left: 2vw;
+    padding-right: 3vw;
+  }
 `;
 
 export default class ArticlesGrid extends Component {

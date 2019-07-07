@@ -9,6 +9,9 @@ const MetaInfoWrapper = styled.ul`
   list-style: none;
   flex-direction: column;
   min-width: 100px;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export default function MetaInfoForCard(props) {

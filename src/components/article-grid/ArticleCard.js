@@ -24,6 +24,12 @@ export default function ArticleCard(props) {
     :active {
       background-color: #80ffe8;
     }
+    @media (max-width: 768px) {
+      -webkit-box-shadow: 0px 0px 0px 0px #f2dde6;
+      -moz-box-shadow: 0px 0px 0px 0px #f2dde6;
+      box-shadow: 0px 0px 0px 0px #f2dde6;
+      margin-bottom: 5vh;
+    }
   `;
 
   return (
