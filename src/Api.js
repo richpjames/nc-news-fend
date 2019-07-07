@@ -12,7 +12,7 @@ export const getTopics = () => {
 
 export const getArticleSummaries = (topic, sort_by) => {
   return request
-    .get("/articles", {
+    .get("articles", {
       params: {
         topic,
         sort_by
@@ -24,7 +24,7 @@ export const getArticleSummaries = (topic, sort_by) => {
 };
 
 export const getArticleById = id => {
-  return request.get(`/articles/${id}`).then(({ data }) => {
+  return request.get(`articles/${id}`).then(({ data }) => {
     return data.article;
   });
 };
@@ -45,7 +45,7 @@ export const postComment = (comment, articleId) => {
 
 export const patchArticleVotes = (article_id, increment) => {
   return request
-    .patch(`/articles/${article_id}`, { inc_votes: increment })
+    .patch(`articles/${article_id}`, { inc_votes: increment })
     .then(votes => {
       return votes.data.votes;
     });
@@ -53,7 +53,7 @@ export const patchArticleVotes = (article_id, increment) => {
 
 export const patchCommentVotes = (comment_id, increment) => {
   return request
-    .patch(`/comments/${comment_id}`, { inc_votes: increment })
+    .patch(`comments/${comment_id}`, { inc_votes: increment })
     .then(votes => {
       return votes.data.votes;
     });
