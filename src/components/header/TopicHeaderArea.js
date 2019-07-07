@@ -3,11 +3,28 @@ import { Link } from "@reach/router";
 import styled from "styled-components";
 
 export default function TopicHeaderArea(props) {
-  const TopicLinkWrapper = styled.span`
-    border: 1px solid #6fb1fc;
-    padding: 0.5em;
-    width: 100%;
+  const NavListWrapper = styled.ul`
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 75%;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
 
+    h3 {
+      text-decoration: underline;
+    }
+  `;
+
+  const TopicOuterWrapper = styled.span``;
+
+  const TopicItemWrapper = styled.li`
+    width: 15vw;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    border: 1px solid #6fb1fc;
     :hover {
       border: 1px solid #fff;
     }
@@ -19,20 +36,21 @@ export default function TopicHeaderArea(props) {
 
   return (
     <nav>
-      <ul>
+      <NavListWrapper>
+        <h3>Topics:</h3>
         {props.topics.map(topic => (
-          <TopicLinkWrapper key={topic.slug}>
+          <TopicOuterWrapper key={topic.slug}>
             <Link to={`/topics/${topic.slug}`}>
-              <li>{topic.slug}</li>
+              <TopicItemWrapper>{topic.slug}</TopicItemWrapper>
             </Link>
-          </TopicLinkWrapper>
+          </TopicOuterWrapper>
         ))}
-        <TopicLinkWrapper>
+        <TopicOuterWrapper>
           <Link to="/">
-            <li>view all articles</li>
+            <TopicItemWrapper>view all articles</TopicItemWrapper>
           </Link>
-        </TopicLinkWrapper>
-      </ul>
+        </TopicOuterWrapper>
+      </NavListWrapper>
     </nav>
   );
 }
