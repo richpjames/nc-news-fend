@@ -7,6 +7,7 @@ const TopRowWrapper = styled.span`
   display: flex;
   justify-content: space-around;
   height: 10vw;
+  min-height: 110px;
   background: #0052d4; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -23,6 +24,11 @@ const TopRowWrapper = styled.span`
 
   h1 {
     padding-top: 1.5vw;
+  }
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2em;
+    }
   }
 `;
 

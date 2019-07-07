@@ -22,9 +22,10 @@ const ArticlesWrapper = styled.section`
   border: 2px solid #6fb1fc;
   border-radius: 25px;
   @media (max-width: 768px) {
-    width: 75%;
-    padding-left: 2vw;
-    padding-right: 3vw;
+    width: 90%;
+    padding-left: 2%;
+    padding-right: 3%;
+    margin-top: 5vh;
   }
 `;
 

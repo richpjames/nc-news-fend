@@ -30,6 +30,8 @@ export default class Comments extends Component {
   render() {
     const { votes, articleId } = this.props;
     const { username } = this.props.loggedInUser;
+    const { hasError } = this.state;
+    if (hasError) return <h3>Error loading comments</h3>;
     return (
       <CommentSectionWrapper>
         <CommentPostBox>
@@ -91,14 +93,14 @@ export default class Comments extends Component {
           };
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => this.setState({ hasError: true, errorMsg: err }));
   };
   fetchComments = article_id => {
     getComments(article_id)
       .then(comments => {
         this.setState({ comments: comments, loading: false });
       })
-      .catch(console.log);
+      .catch(err => this.setState({ hasError: true, errorMsg: err }));
   };
   handleDelete = comment_id => {
     const { comments } = this.state;
@@ -112,8 +114,6 @@ export default class Comments extends Component {
           };
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => this.setState({ hasError: true, errorMsg: err }));
   };
 }

@@ -6,7 +6,7 @@ import { Link } from "@reach/router";
 
 const HeaderWrapper = styled.header`
   display: grid;
-  grid-template-rows: 1fr, 1fr, 1fr;
+  grid-template-rows: 1fr, 1fr;
   color: white;
   font-family: "Josefin Sans", sans-serif;
 `;
