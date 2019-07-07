@@ -7,12 +7,14 @@ const Thumb = styled.button`
   position: relative;
 `;
 const VoterWrapper = styled.section`
-  width: 10vw;
+  width: 90px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2vh;
   padding-top: 1vh;
   padding-bottom: 1vh;
   display: block;
+  border: solid 1px #eccbd9;
 `;
 
 export default class Voter extends Component {

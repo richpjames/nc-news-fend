@@ -10,6 +10,7 @@ const CommentSectionWrapper = styled.section``;
 const CommentPostBox = styled.section`
   margin-left: auto;
   margin-right: auto;
+  padding-top: 2vh;
   padding-bottom: 2vh;
   min-height: 30px;
   background: #aefff0;

@@ -7,7 +7,15 @@ const TitleWrapper = styled.section`
   padding-bottom: 0.25vh;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+`;
+
+const Title = styled.h1`
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
 `;
 
 export default function ArticleTitleArea(props) {
@@ -15,7 +23,7 @@ export default function ArticleTitleArea(props) {
   const { author } = props;
   return (
     <TitleWrapper>
-      <h1>{title}</h1>
+      <Title>{title}</Title>
       <h2>By {author}</h2>
       <br />
     </TitleWrapper>

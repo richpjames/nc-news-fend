@@ -8,6 +8,7 @@ const CommentTitleWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   border-bottom: solid 1px #bcb6ff;
+  display: block;
 `;
 
 export default function CommentTitle() {

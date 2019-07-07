@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const MetaInfoWrapper = styled.div`
   border: solid 1px #bcb6ff;
+  margin: 10px;
 `;
 
 export default function CommentMetaInfo(props) {

@@ -9,7 +9,6 @@ import ArticleTitleArea from "./ArticleTitleArea";
 import ArticleBody from "./ArticleBody";
 
 const SingleArticleWrapper = styled.section`
-  padding-top: 2vh;
   background: #e1eff6;
   width: 80vw;
   margin-left: auto;
