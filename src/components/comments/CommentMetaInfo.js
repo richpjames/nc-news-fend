@@ -10,7 +10,6 @@ const MetaInfoWrapper = styled.div`
 export default function CommentMetaInfo(props) {
   const { author, createdAt } = props;
   const dateCreated = `${distanceInWords(createdAt, new Date())} ago`;
-  console.log(props.createdAt);
   return (
     <MetaInfoWrapper>
       <p>By: {author}</p>
