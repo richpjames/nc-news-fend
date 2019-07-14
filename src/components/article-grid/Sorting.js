@@ -10,12 +10,9 @@ const SortingWrap = styled.section`
   padding-bottom: 1em;
   padding-top: 1em;
   background: #b0d4fd;
-  -webkit-box-shadow: 3px 3px 0px 1px #f2dde6;
-  -moz-box-shadow: 3px 3px 0px 1px #f2dde6;
-  box-shadow: 3px 3px 0px 1px #f2dde6;
+
   @media (max-width: 768px) {
     width: 85%;
-    box-shadow: 0px 0px 0px 0px #fff;
   }
 `;
 
@@ -26,10 +23,16 @@ export default function Sorting(props) {
       <h4>Sort By:</h4>
       <br />
       <form onChange={dropDownSubmit}>
-        <select name="sort-by">
-          <option value="created_at">Date Created</option>
-          <option value="comment_count">Comment Count</option>
-          <option value="votes">Votes</option>
+        <select className="" name="sort-by" size="1">
+          <option value="created_at" name="date created">
+            Date Created
+          </option>
+          <option value="comment_count" name="comment count">
+            Comment Count
+          </option>
+          <option value="votes" name="votes">
+            Votes
+          </option>
         </select>
       </form>
     </SortingWrap>
